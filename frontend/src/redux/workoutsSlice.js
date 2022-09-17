@@ -1,4 +1,4 @@
-import {createSlice} from 'react-redux'
+import {createSlice} from '@reduxjs/toolkit'
 
 export const workoutsSlice=createSlice({
     name: workouts,
@@ -20,3 +20,6 @@ export const workoutsSlice=createSlice({
     }
 
 })
+
+export const {getWorkouts, addWorkout} =workoutsSlice.actions
+export default workoutsSlice.reducer
