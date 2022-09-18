@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 export const workoutsSlice=createSlice({
     name: 'workouts',
     initialState: {
-        workouts:null,
+        workouts:[],
         isPending:null,
         isError:null
     },
