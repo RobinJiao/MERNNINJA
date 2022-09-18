@@ -1,15 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 export const workoutsSlice=createSlice({
-    name: workouts,
+    name: 'workouts',
     initialState: {
-        workouts:[],
+        workouts:null,
         isPending:null,
         isError:null
     },
     reducers: {
-        getWorkouts: (state)=>{
+        getWorkouts: (state, action)=>{
             //fetch workouts from API and "state.workouts"=res.json()
+            state.workouts=action.payload
+            console.log('getWorkouts reducer! ', action.payload)
         },
         addWorkout: (state,action)=>{
             //add a workout
@@ -18,8 +20,6 @@ export const workoutsSlice=createSlice({
             //fetch post 
         }
     }
-
 })
-
 export const {getWorkouts, addWorkout} =workoutsSlice.actions
 export default workoutsSlice.reducer

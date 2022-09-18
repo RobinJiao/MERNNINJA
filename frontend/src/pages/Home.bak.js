@@ -1,21 +1,15 @@
-import {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {useEffect, useState} from 'react'
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from '../components/WorkoutForm'
-import { getWorkouts } from '../redux/workoutsSlice'
 
 function Home() {
-  // const [workouts, setWorkouts]=useState(null)
-  const workouts=useSelector((state)=>(state.workouts))
-  const dispatch=useDispatch()
-
+  const [workouts, setWorkouts]=useState(null)
   useEffect(()=>{
     const fetchWorkouts=async ()=>{
       const res=await fetch('/api/workouts')
       const json=await res.json()
       if(res.ok) {
-        // setWorkouts(json)
-        dispatch(getWorkouts(json))
+        setWorkouts(json)
         console.log('workouts fetched! ',res, json)
       }
     }
