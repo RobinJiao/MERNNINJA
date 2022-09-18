@@ -22,7 +22,7 @@ function Home() {
     }
     console.log('begin to fetch workouts ...')
     fetchWorkouts()
-  },[dispatch])
+  },[])
   return (
     <div className="home">
       <div className="workouts">
