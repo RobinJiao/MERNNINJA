@@ -6,8 +6,8 @@ import { getWorkouts } from '../redux/workoutsSlice'
 
 function Home() {
   // const [workouts, setWorkouts]=useState(null)
-  const workouts=useSelector((state)=>(state.workouts))
-  console.log('workouts from useSelector', workouts)
+  const {workouts}=useSelector((state)=>state.workouts)
+  console.log('workouts from useSelector', workouts, workouts.length)
   const dispatch=useDispatch()
 
   useEffect(()=>{
@@ -16,19 +16,19 @@ function Home() {
       const json=await res.json()
       if(res.ok) {
         // setWorkouts(json)
-        console.log('workouts fetched! ',res, json)
+        console.log('workouts fetched! ',json)
         dispatch(getWorkouts(json))
       }
     }
     console.log('begin to fetch workouts ...')
     fetchWorkouts()
-  },[])
+  },[dispatch])
   return (
     <div className="home">
       <div className="workouts">
-        {/* {workouts&& workouts.map((workout)=>(
-          <WorkoutDetails key={workout._id} workout={workout} />
-        ))} */}
+        {workouts.length!==0?
+        workouts.map((workout)=>
+          <WorkoutDetails key={workout._id} workout={workout} />):<></>}
       </div>
       <WorkoutForm />
     </div>

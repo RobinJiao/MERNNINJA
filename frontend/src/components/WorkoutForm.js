@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addWorkout } from '../redux/workoutsSlice'
 
 function WorkoutForm() {
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
     const [error,setError] = useState(null)
+    const dispatch=useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -24,6 +27,7 @@ function WorkoutForm() {
             setTitle('')
             setLoad('')
             setReps('')
+            dispatch(addWorkout(json))
             console.log('New workout added', json)
         }
     }
